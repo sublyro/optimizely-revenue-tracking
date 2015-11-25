@@ -97,14 +97,13 @@ function convertCurrencyAndSendRevenue(revenueInCents, eventName, currency) {
 
 function convertCurrencyAndSendRevenue(revenueInCents, eventName, currency) {
     var request = createCORSRequest("get", "http://api.fixer.io/latest?base=" + currency);
-    var request = createCORSRequest("get", "http://api.fixer.io/latest?callback=?");
+    //var request = createCORSRequest("get", "http://api.fixer.io/latest?callback=?");
     var x = "USD";
     if (request) {
         request.onload = function () {
             rates = JSON.parse(request.responseText).rates;
             for (var to_currency in rates) {
                 if (to_currency == optly.defaultCurrency) {
-                    console.log("Excahnge rate is " +rates[to_currency]);
                     revenueInCents = (revenueInCents * rates[to_currency]).toFixed(0);
                     sendRevenue(revenueInCents, eventName);
                 }
@@ -162,5 +161,5 @@ http://api.fixer.io/latest?base=EUR
 http://stackoverflow.com/questions/10430279/javascript-object-extending
 
 run it with 
-optimizely.trackRevenue(123, {'currency':'EUR','dimensions':{'product_type':'electronics','country':'nl'}});
+optimizely.trackRevenue(123, {'currency':'EUR','id':'432152315', dimensions':{'product_type':'electronics','country':'nl'}});
 */
