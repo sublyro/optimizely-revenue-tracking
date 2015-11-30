@@ -186,7 +186,6 @@
     var trackRevenue = {
         trackRevenue: function (revenueInCents, param) {
             log_debug("New revenue " + revenueInCents);
-            log_debug(param);
 
             if (typeof param == "undefined") {
                 param = {};
