@@ -30,7 +30,7 @@
     function setConversionRate(from_currency, to_currency, rate) {
         var key = from_currency + "_" + to_currency;
         log_debug("Setting conversion rate for " + key + " to " + rate);
-        if (!isNaN(rate)) {
+        if (isANumber(revenueInCents)) {
             sessionStorage.setItem(key, rate);
         }
     }
@@ -42,12 +42,18 @@
         return sessionStorage.getItem(key);
     }
 
+    function isANumber( n ) {
+        var numStr = /^-?\d+\.?\d*$/;
+        return numStr.test( n.toString() );
+    }
+
 
     /**
      * Send revenue to Optimizely
      */
     function sendRevenue(revenueInCents, eventName) {
-        if (!isNaN(revenueInCents)) {
+        if (isANumber(revenueInCents)) {
+            console.log("ok trackrevenue");
             window.optimizely.push(['trackEvent', eventName, {
                 'revenue': revenueInCents
             }]);
