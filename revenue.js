@@ -209,7 +209,7 @@
 
             window.optimizely = window.optimizely || [];
 
-            setDimensions(param.dimensions);
+            setDimensions(param.dimension);
 
             if (typeof id == "undefined" || !checkTransaction(id)) {
                 if (typeof id != "undefined") {
@@ -219,10 +219,10 @@
                 if (typeof currency != "undefined") {
                     // we need to convert currency
                     convertCurrencyAndSendRevenue(revenueInCents, eventName, currency);
-                    unsetDimensions(param.dimensions);
+                    unsetDimensions(param.dimension);
                 } else {
                     sendRevenue(revenueInCents, eventName);
-                    unsetDimensions(param.dimensions);
+                    unsetDimensions(param.dimension);
                 }
             } else {
                 // this is a duplicate revenue. Do nothing
