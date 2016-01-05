@@ -30,7 +30,7 @@
     function setConversionRate(from_currency, to_currency, rate) {
         var key = from_currency + "_" + to_currency;
         log_debug("Setting conversion rate for " + key + " to " + rate);
-        if (isANumber(revenueInCents)) {
+        if (isANumber(rate)) {
             sessionStorage.setItem(key, rate);
         }
     }
